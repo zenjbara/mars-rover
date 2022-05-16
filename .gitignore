@@ -1,0 +1,15 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Maven
+target/
+
+# IntelliJ idea
+*.iml
+.idea/
+
+# MacOS
+.DS_Store
