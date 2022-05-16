@@ -26,7 +26,7 @@ public class RoverServiceTest {
     }
 
     @Test
-    public void should_move_forward_when_single_command_is_F() {
+    public void should_move_forward_when_single_command_is_F() throws Exception {
         int expectedY =  y + 1;
         roverBusiness.receiveSingleCommand(rover, 'F');
         assertThat(rover.getY()).isEqualTo(expectedY);

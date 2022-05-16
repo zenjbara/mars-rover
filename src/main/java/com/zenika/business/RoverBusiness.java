@@ -10,5 +10,5 @@ public interface RoverBusiness {
      * @param rover
      * @param command
      */
-    void receiveSingleCommand(Rover rover, char command);
+    void receiveSingleCommand(Rover rover, char command) throws Exception;
 }

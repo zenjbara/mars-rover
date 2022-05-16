@@ -9,7 +9,13 @@ public class RoverBusinessImpl implements RoverBusiness {
 
 
     @Override
-    public void receiveSingleCommand(Rover rover, char command) {
-
+    public void receiveSingleCommand(Rover rover, char command) throws Exception {
+        switch (Character.toUpperCase(command)){
+            case 'F':
+                rover.moveForward();
+                break;
+            default:
+                throw new Exception("unknown command :" + command);
+        }
     }
 }
