@@ -2,7 +2,9 @@ package com.zenika;
 
 import com.zenika.business.RoverBusiness;
 import com.zenika.common.Direction;
+import com.zenika.common.RoverException;
 import com.zenika.domain.Rover;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +60,14 @@ public class RoverServiceTest {
         Direction expectedDirection =  Direction.EAST;
         roverBusiness.receiveSingleCommand('L');
         assertThat(rover.getDirection()).isEqualTo(expectedDirection);
+    }
+
+    @Test
+    public void should_throw_exception_when_command_id_unknown() {
+
+        Assertions.assertThrows(RoverException.class, () -> {
+            roverBusiness.receiveSingleCommand('X');
+        } , "RoverException was expected");
     }
 
 }
