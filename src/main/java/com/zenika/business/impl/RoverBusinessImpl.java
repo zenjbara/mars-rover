@@ -1,6 +1,7 @@
 package com.zenika.business.impl;
 
 import com.zenika.business.RoverBusiness;
+import com.zenika.common.RoverException;
 import com.zenika.domain.Rover;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public class RoverBusinessImpl implements RoverBusiness {
     private Rover rover;
 
     @Override
-    public void receiveSingleCommand(char command) throws Exception {
+    public void receiveSingleCommand(char command) throws RoverException {
         switch (Character.toUpperCase(command)){
             case 'F':
                 rover.moveForward();
@@ -27,7 +28,7 @@ public class RoverBusinessImpl implements RoverBusiness {
                 rover.turnLeft();
                 break;
             default:
-                throw new Exception("unknown command :" + command);
+                throw new RoverException("unknown command :" + command);
         }
     }
 }
