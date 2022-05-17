@@ -16,5 +16,5 @@ public interface RoverBusiness {
      *
      * @param commands
      */
-    void receiveCommands(String commands) throws RoverException;
+    void receiveCommands(String commands);
 }

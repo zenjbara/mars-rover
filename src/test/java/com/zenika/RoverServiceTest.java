@@ -70,7 +70,7 @@ public class RoverServiceTest {
     }
 
     @Test
-    public void should_be_able_to_receive_multiple_commands() throws RoverException {
+    public void should_be_able_to_receive_multiple_commands() {
         roverBusiness.receiveCommands("FRB");
         assertThat(rover.getDirection()).isEqualTo(Direction.WEST);
         assertThat(rover.getX()).isEqualTo(x - 1);
@@ -78,7 +78,7 @@ public class RoverServiceTest {
     }
 
     @Test
-    public void should_be_able_to_escape_unknown_command() throws RoverException {
+    public void should_be_able_to_escape_unknown_command() {
         char unknownCmd = 'Z';
         roverBusiness.receiveCommands(unknownCmd + "RB");
         assertThat(rover.getDirection()).isEqualTo(Direction.WEST);

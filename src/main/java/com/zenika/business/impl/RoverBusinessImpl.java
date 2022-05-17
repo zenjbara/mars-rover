@@ -33,11 +33,12 @@ public class RoverBusinessImpl implements RoverBusiness {
     }
 
     @Override
-    public void receiveCommands(String commands) throws RoverException {
+    public void receiveCommands(String commands) {
         for (char cmd : commands.toCharArray()) {
             try {
                 this.receiveSingleCommand(cmd);
             } catch (RoverException e) {
+                // Rover ignore unknown commands
                 continue;
             }
         }
