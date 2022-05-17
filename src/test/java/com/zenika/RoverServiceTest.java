@@ -1,6 +1,7 @@
 package com.zenika;
 
 import com.zenika.business.RoverBusiness;
+import com.zenika.common.Direction;
 import com.zenika.domain.Rover;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,13 @@ public class RoverServiceTest {
         int expectedY =  y - 1;
         roverBusiness.receiveSingleCommand('B');
         assertThat(rover.getY()).isEqualTo(expectedY);
+    }
+
+    @Test
+    public void should_turn_right_when_single_command_is_R() throws Exception {
+        Direction expectedDirection =  Direction.WEST;
+        roverBusiness.receiveSingleCommand('R');
+        assertThat(rover.getDirection()).isEqualTo(expectedDirection);
     }
 
 }
