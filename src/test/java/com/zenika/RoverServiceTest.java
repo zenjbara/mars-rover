@@ -40,4 +40,11 @@ public class RoverServiceTest {
         assertThat(rover.getY()).isEqualTo(expectedY);
     }
 
+    @Test
+    public void should_move_backward_when_single_command_is_B() throws Exception {
+        int expectedY =  y - 1;
+        roverBusiness.receiveSingleCommand('B');
+        assertThat(rover.getY()).isEqualTo(expectedY);
+    }
+
 }
