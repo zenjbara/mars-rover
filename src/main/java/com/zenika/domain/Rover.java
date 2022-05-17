@@ -49,4 +49,8 @@ public class Rover {
                 break;
         }
     }
+
+    public void turnRight() {
+            this.direction = this.direction.getRightDirection();
+    }
 }
