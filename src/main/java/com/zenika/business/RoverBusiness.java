@@ -1,14 +1,13 @@
 package com.zenika.business;
 
-import com.zenika.domain.Rover;
 
+import com.zenika.domain.Rover;
 
 public interface RoverBusiness {
 
     /**
      * Make the rover receive a single command
-     * @param rover
      * @param command
      */
-    void receiveSingleCommand(Rover rover, char command) throws Exception;
+    void receiveSingleCommand(char command) throws Exception;
 }
