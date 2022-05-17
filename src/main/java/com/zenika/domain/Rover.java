@@ -32,4 +32,21 @@ public class Rover {
                 break;
         }
     }
+
+    public void moveBackward() {
+        switch (direction){
+            case NORTH:
+                this.y--;
+                break;
+            case SOUTH:
+                this.y++;
+                break;
+            case WEST:
+                this.x--;
+                break;
+            case EAST:
+                this.x++;
+                break;
+        }
+    }
 }

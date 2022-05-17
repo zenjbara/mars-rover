@@ -17,6 +17,9 @@ public class RoverBusinessImpl implements RoverBusiness {
             case 'F':
                 rover.moveForward();
                 break;
+            case 'B':
+                rover.moveBackward();
+                break;
             default:
                 throw new Exception("unknown command :" + command);
         }
