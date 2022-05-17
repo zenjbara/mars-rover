@@ -66,7 +66,7 @@ public class RoverServiceTest {
     public void should_throw_exception_when_command_id_unknown() {
         Assertions.assertThrows(RoverException.class, () -> {
             roverBusiness.receiveSingleCommand('X');
-        } , "RoverException was expected");
+        }, "RoverException was expected");
     }
 
     @Test
@@ -75,6 +75,15 @@ public class RoverServiceTest {
         assertThat(rover.getDirection()).isEqualTo(Direction.WEST);
         assertThat(rover.getX()).isEqualTo(x - 1);
         assertThat(rover.getY()).isEqualTo(y + 1);
+    }
+
+    @Test
+    public void should_be_able_to_escape_unknown_command() throws RoverException {
+        char unknownCmd = 'Z';
+        roverBusiness.receiveCommands(unknownCmd + "RB");
+        assertThat(rover.getDirection()).isEqualTo(Direction.WEST);
+        assertThat(rover.getX()).isEqualTo(x - 1);
+        assertThat(rover.getY()).isEqualTo(y);
     }
 
 }
