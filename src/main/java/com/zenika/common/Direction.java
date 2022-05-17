@@ -27,4 +27,11 @@ public enum Direction {
         return value;
     }
 
+    public Direction getLeftDirection() {
+        if(this.getValue() == 0){
+            return values()[3];
+        }
+
+        return values()[this.getValue() - 1];
+    }
 }

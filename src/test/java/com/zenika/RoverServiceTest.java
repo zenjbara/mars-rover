@@ -6,10 +6,8 @@ import com.zenika.domain.Rover;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.TestPropertySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,6 +29,7 @@ public class RoverServiceTest {
     public void beforeRoverTest(){
         x = rover.getX();
         y = rover.getY();
+        rover.setDirection(Direction.NORTH); // always to the north
     }
 
     @Test

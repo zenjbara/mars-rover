@@ -53,4 +53,8 @@ public class Rover {
     public void turnRight() {
             this.direction = this.direction.getRightDirection();
     }
+
+    public void turnLeft() {
+        this.direction = this.direction.getLeftDirection();
+    }
 }
