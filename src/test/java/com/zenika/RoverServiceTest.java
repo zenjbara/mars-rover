@@ -35,28 +35,28 @@ public class RoverServiceTest {
     }
 
     @Test
-    public void should_move_forward_when_single_command_is_F() throws Exception {
+    public void should_move_forward_when_single_command_is_F() throws RoverException {
         int expectedY =  y + 1;
         roverBusiness.receiveSingleCommand('F');
         assertThat(rover.getY()).isEqualTo(expectedY);
     }
 
     @Test
-    public void should_move_backward_when_single_command_is_B() throws Exception {
+    public void should_move_backward_when_single_command_is_B() throws RoverException {
         int expectedY =  y - 1;
         roverBusiness.receiveSingleCommand('B');
         assertThat(rover.getY()).isEqualTo(expectedY);
     }
 
     @Test
-    public void should_turn_right_when_single_command_is_R() throws Exception {
+    public void should_turn_right_when_single_command_is_R() throws RoverException {
         Direction expectedDirection =  Direction.WEST;
         roverBusiness.receiveSingleCommand('R');
         assertThat(rover.getDirection()).isEqualTo(expectedDirection);
     }
 
     @Test
-    public void should_turn_left_when_single_command_is_L() throws Exception {
+    public void should_turn_left_when_single_command_is_L() throws RoverException {
         Direction expectedDirection =  Direction.EAST;
         roverBusiness.receiveSingleCommand('L');
         assertThat(rover.getDirection()).isEqualTo(expectedDirection);
