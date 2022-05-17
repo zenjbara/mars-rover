@@ -64,17 +64,16 @@ public class RoverServiceTest {
 
     @Test
     public void should_throw_exception_when_command_id_unknown() {
-
         Assertions.assertThrows(RoverException.class, () -> {
             roverBusiness.receiveSingleCommand('X');
         } , "RoverException was expected");
     }
 
     @Test
-    public void should_be_able_to_receive_multiple_commands(){
+    public void should_be_able_to_receive_multiple_commands() throws RoverException {
         roverBusiness.receiveCommands("FRB");
         assertThat(rover.getDirection()).isEqualTo(Direction.WEST);
-        assertThat(rover.getX()).isEqualTo(x -1);
+        assertThat(rover.getX()).isEqualTo(x - 1);
         assertThat(rover.getY()).isEqualTo(y + 1);
     }
 

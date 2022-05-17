@@ -2,7 +2,6 @@ package com.zenika.business;
 
 
 import com.zenika.common.RoverException;
-import com.zenika.domain.Rover;
 
 public interface RoverBusiness {
 
@@ -14,7 +13,8 @@ public interface RoverBusiness {
 
     /**
      * Make the rover receive multiple commands
-     * @param frb
+     *
+     * @param commands
      */
-    void receiveCommands(String frb);
+    void receiveCommands(String commands) throws RoverException;
 }
