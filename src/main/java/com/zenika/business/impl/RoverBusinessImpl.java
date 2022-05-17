@@ -31,4 +31,9 @@ public class RoverBusinessImpl implements RoverBusiness {
                 throw new RoverException("unknown command :" + command);
         }
     }
+
+    @Override
+    public void receiveCommands(String frb) {
+
+    }
 }

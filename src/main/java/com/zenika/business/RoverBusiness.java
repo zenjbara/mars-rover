@@ -11,4 +11,10 @@ public interface RoverBusiness {
      * @param command
      */
     void receiveSingleCommand(char command) throws RoverException;
+
+    /**
+     * Make the rover receive multiple commands
+     * @param frb
+     */
+    void receiveCommands(String frb);
 }

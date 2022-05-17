@@ -70,4 +70,12 @@ public class RoverServiceTest {
         } , "RoverException was expected");
     }
 
+    @Test
+    public void should_be_able_to_receive_multiple_commands(){
+        roverBusiness.receiveCommands("FRB");
+        assertThat(rover.getDirection()).isEqualTo(Direction.WEST);
+        assertThat(rover.getX()).isEqualTo(x -1);
+        assertThat(rover.getY()).isEqualTo(y + 1);
+    }
+
 }
