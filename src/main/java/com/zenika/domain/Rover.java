@@ -3,10 +3,15 @@ package com.zenika.domain;
 import com.zenika.common.Direction;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 @Data
 @AllArgsConstructor
+@Component
 public class Rover {
+
+    public Rover() {
+    }
 
     private int x;
     private int y;
