@@ -139,12 +139,12 @@ public class RoverServiceTest {
 
         // first box
         this.rover.getXPoint().setLocation(firstBox);
-        moveBackward();
+        moveForward();
         assertThat(getRoverLocationX()).isEqualTo(MAX_X_LOCATION);
 
         // last box
         this.rover.getXPoint().setLocation(MAX_X_LOCATION);
-        moveForward();
+        moveBackward();
         assertThat(getRoverLocationX()).isEqualTo(firstBox);
     }
 }

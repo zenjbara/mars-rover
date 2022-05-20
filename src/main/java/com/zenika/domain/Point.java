@@ -11,11 +11,13 @@ public class Point {
     private int maxLocation;
 
     public int incrementLocation() {
-        return location++;
+        location = (location == maxLocation) ? 1 : location + 1;
+        return location;
     }
 
     public int decrementLocation() {
-        return location--;
+        location = (location == 1) ? maxLocation : location - 1;
+        return location;
     }
 
 }
