@@ -10,13 +10,17 @@ public class Point {
     private int location;
     private int maxLocation;
 
+    private final int firstlocation = 1;
+
     public int incrementLocation() {
-        location = (location == maxLocation) ? 1 : location + 1;
+        // edges are connected
+        location = (location == maxLocation) ? firstlocation : location + firstlocation;
         return location;
     }
 
     public int decrementLocation() {
-        location = (location == 1) ? maxLocation : location - 1;
+        // edges are connected
+        location = (location == firstlocation) ? maxLocation : location - firstlocation;
         return location;
     }
 
