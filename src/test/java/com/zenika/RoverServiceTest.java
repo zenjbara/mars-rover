@@ -9,13 +9,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-@Import(RoverServiceTestContextConfiguration.class)
 public class RoverServiceTest {
+
+    private int x = 1;
+    private int y = 3;
 
     @Autowired
     private Rover rover;
@@ -23,34 +24,63 @@ public class RoverServiceTest {
     @Autowired
     private RoverBusiness roverBusiness;
 
-    private int x;
-
-    private int y;
-
     @BeforeEach
-    public void beforeRoverTest(){
-        x = rover.getX();
-        y = rover.getY();
-        rover.setDirection(Direction.NORTH); // always to the north
+    public void beforeRoverTest() {
+        rover.setX(this.x);
+        rover.setY(this.y);
+        rover.setDirection(Direction.NORTH);
     }
 
     @Test
     public void should_move_forward_when_single_command_is_F() throws RoverException {
-        int expectedY =  y + 1;
+        moveForward();
+        assertThat(rover.getY()).isEqualTo(y + 1);
+
+        rover.setDirection(Direction.WEST);
+        moveForward();
+        assertThat(rover.getX()).isEqualTo(x + 1);
+
+        rover.setDirection(Direction.SOUTH);
+        moveForward();
+        assertThat(rover.getY()).isEqualTo(y);
+
+        rover.setDirection(Direction.EAST);
+        moveForward();
+        assertThat(rover.getX()).isEqualTo(x);
+        assertThat(rover.getY()).isEqualTo(y); // Y should not change
+    }
+
+    private void moveForward() throws RoverException {
         roverBusiness.receiveSingleCommand('F');
-        assertThat(rover.getY()).isEqualTo(expectedY);
     }
 
     @Test
     public void should_move_backward_when_single_command_is_B() throws RoverException {
-        int expectedY =  y - 1;
+        moveBackward();
+        assertThat(rover.getY()).isEqualTo(y - 1);
+
+        rover.setDirection(Direction.WEST);
+        moveBackward();
+        assertThat(rover.getX()).isEqualTo(x - 1);
+
+        rover.setDirection(Direction.SOUTH);
+        moveBackward();
+        assertThat(rover.getY()).isEqualTo(y);
+        assertThat(rover.getX()).isEqualTo(x - 1); // X should not change
+
+        rover.setDirection(Direction.EAST);
+        moveBackward();
+        assertThat(rover.getX()).isEqualTo(x);
+
+    }
+
+    private void moveBackward() throws RoverException {
         roverBusiness.receiveSingleCommand('B');
-        assertThat(rover.getY()).isEqualTo(expectedY);
     }
 
     @Test
     public void should_turn_right_when_single_command_is_R() throws RoverException {
-        Direction expectedDirection =  Direction.WEST;
+        Direction expectedDirection = Direction.WEST;
         roverBusiness.receiveSingleCommand('R');
         assertThat(rover.getDirection()).isEqualTo(expectedDirection);
     }
