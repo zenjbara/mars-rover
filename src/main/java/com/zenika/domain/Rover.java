@@ -13,8 +13,8 @@ public class Rover {
     public Rover() {
     }
 
-    private int x;
-    private int y;
+    private Point xPoint;
+    private Point yPoint;
 
     private Direction direction;
 
@@ -22,18 +22,18 @@ public class Rover {
      * Move the rover one step forward depends on its direction
      */
     public void moveForward() {
-        switch (direction){
+        switch (direction) {
             case NORTH:
-                this.y++;
+                yPoint.incrementLocation();
                 break;
             case SOUTH:
-                this.y--;
+                yPoint.decrementLocation();
                 break;
             case WEST:
-                this.x++;
+                xPoint.incrementLocation();
                 break;
             case EAST:
-                this.x--;
+                xPoint.decrementLocation();
                 break;
         }
     }
@@ -41,16 +41,16 @@ public class Rover {
     public void moveBackward() {
         switch (direction){
             case NORTH:
-                this.y--;
+                yPoint.decrementLocation();
                 break;
             case SOUTH:
-                this.y++;
+                yPoint.incrementLocation();
                 break;
             case WEST:
-                this.x--;
+                xPoint.decrementLocation();
                 break;
             case EAST:
-                this.x++;
+                xPoint.incrementLocation();
                 break;
         }
     }

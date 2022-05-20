@@ -3,6 +3,7 @@ package com.zenika;
 import com.zenika.business.RoverBusiness;
 import com.zenika.common.Direction;
 import com.zenika.common.RoverException;
+import com.zenika.domain.Point;
 import com.zenika.domain.Rover;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,8 +16,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class RoverServiceTest {
 
-    private int x = 1;
-    private int y = 3;
+    private static final int X = 1;
+    private static final int Y = 3;
+    private static final int MAX_X_LOCATION = 5;
+    private static final int MAX_Y_LOCATION = 5;
 
     @Autowired
     private Rover rover;
@@ -26,28 +29,36 @@ public class RoverServiceTest {
 
     @BeforeEach
     public void beforeRoverTest() {
-        rover.setX(this.x);
-        rover.setY(this.y);
+        rover.setXPoint(new Point(X, MAX_X_LOCATION));
+        rover.setYPoint(new Point(Y, MAX_Y_LOCATION));
         rover.setDirection(Direction.NORTH);
     }
 
     @Test
     public void should_move_forward_when_single_command_is_F() throws RoverException {
         moveForward();
-        assertThat(rover.getY()).isEqualTo(y + 1);
+        assertThat(getRoverLocationY()).isEqualTo(Y + 1);
 
         rover.setDirection(Direction.WEST);
         moveForward();
-        assertThat(rover.getX()).isEqualTo(x + 1);
+        assertThat(getRoverLocationX()).isEqualTo(X + 1);
 
         rover.setDirection(Direction.SOUTH);
         moveForward();
-        assertThat(rover.getY()).isEqualTo(y);
+        assertThat(getRoverLocationY()).isEqualTo(Y);
 
         rover.setDirection(Direction.EAST);
         moveForward();
-        assertThat(rover.getX()).isEqualTo(x);
-        assertThat(rover.getY()).isEqualTo(y); // Y should not change
+        assertThat(getRoverLocationX()).isEqualTo(X);
+        assertThat(getRoverLocationY()).isEqualTo(Y); // Y should not change
+    }
+
+    private int getRoverLocationX() {
+        return rover.getXPoint().getLocation();
+    }
+
+    private int getRoverLocationY() {
+        return rover.getYPoint().getLocation();
     }
 
     private void moveForward() throws RoverException {
@@ -57,20 +68,20 @@ public class RoverServiceTest {
     @Test
     public void should_move_backward_when_single_command_is_B() throws RoverException {
         moveBackward();
-        assertThat(rover.getY()).isEqualTo(y - 1);
+        assertThat(getRoverLocationY()).isEqualTo(Y - 1);
 
         rover.setDirection(Direction.WEST);
         moveBackward();
-        assertThat(rover.getX()).isEqualTo(x - 1);
+        assertThat(getRoverLocationX()).isEqualTo(X - 1);
 
         rover.setDirection(Direction.SOUTH);
         moveBackward();
-        assertThat(rover.getY()).isEqualTo(y);
-        assertThat(rover.getX()).isEqualTo(x - 1); // X should not change
+        assertThat(getRoverLocationY()).isEqualTo(Y);
+        assertThat(getRoverLocationX()).isEqualTo(X - 1); // X should not change
 
         rover.setDirection(Direction.EAST);
         moveBackward();
-        assertThat(rover.getX()).isEqualTo(x);
+        assertThat(getRoverLocationX()).isEqualTo(X);
 
     }
 
@@ -103,8 +114,8 @@ public class RoverServiceTest {
     public void should_be_able_to_receive_multiple_commands() {
         roverBusiness.receiveCommands("FRB");
         assertThat(rover.getDirection()).isEqualTo(Direction.WEST);
-        assertThat(rover.getX()).isEqualTo(x - 1);
-        assertThat(rover.getY()).isEqualTo(y + 1);
+        assertThat(getRoverLocationX()).isEqualTo(X - 1);
+        assertThat(getRoverLocationY()).isEqualTo(Y + 1);
     }
 
     @Test
@@ -112,8 +123,8 @@ public class RoverServiceTest {
         char unknownCmd = 'Z';
         roverBusiness.receiveCommands(unknownCmd + "RB");
         assertThat(rover.getDirection()).isEqualTo(Direction.WEST);
-        assertThat(rover.getX()).isEqualTo(x - 1);
-        assertThat(rover.getY()).isEqualTo(y);
+        assertThat(getRoverLocationX()).isEqualTo(X - 1);
+        assertThat(getRoverLocationY()).isEqualTo(Y);
     }
 
 }
