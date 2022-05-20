@@ -16,10 +16,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class RoverServiceTest {
 
-    private static final int X = 1;
-    private static final int Y = 3;
     private static final int MAX_X_LOCATION = 5;
     private static final int MAX_Y_LOCATION = 5;
+    private static final int X = MAX_X_LOCATION - 1; // not edge
+    private static final int Y = MAX_Y_LOCATION - 2;
 
     @Autowired
     private Rover rover;
