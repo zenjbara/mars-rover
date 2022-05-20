@@ -93,6 +93,7 @@ public class RoverServiceTest {
     public void should_turn_right_when_single_command_is_R() throws RoverException {
         Direction expectedDirection = Direction.WEST;
         roverBusiness.receiveSingleCommand('R');
+
         assertThat(rover.getDirection()).isEqualTo(expectedDirection);
     }
 
@@ -100,6 +101,7 @@ public class RoverServiceTest {
     public void should_turn_left_when_single_command_is_L() throws RoverException {
         Direction expectedDirection =  Direction.EAST;
         roverBusiness.receiveSingleCommand('L');
+
         assertThat(rover.getDirection()).isEqualTo(expectedDirection);
     }
 
@@ -113,6 +115,7 @@ public class RoverServiceTest {
     @Test
     public void should_be_able_to_receive_multiple_commands() {
         roverBusiness.receiveCommands("FRB");
+
         assertThat(rover.getDirection()).isEqualTo(Direction.WEST);
         assertThat(getRoverLocationX()).isEqualTo(X - 1);
         assertThat(getRoverLocationY()).isEqualTo(Y + 1);
@@ -120,11 +123,28 @@ public class RoverServiceTest {
 
     @Test
     public void should_be_able_to_escape_unknown_command() {
-        char unknownCmd = 'Z';
-        roverBusiness.receiveCommands(unknownCmd + "RB");
+        char unknownCommand = 'Z';
+        roverBusiness.receiveCommands(unknownCommand + "RB");
+
         assertThat(rover.getDirection()).isEqualTo(Direction.WEST);
         assertThat(getRoverLocationX()).isEqualTo(X - 1);
         assertThat(getRoverLocationY()).isEqualTo(Y);
     }
 
+    @Test
+    public void should_connect_horizontal_edges() throws RoverException {
+        // the x edge should be connected to the other x edge
+        this.rover.setDirection(Direction.EAST);
+        int firstBox = 1;
+
+        // first box
+        this.rover.getXPoint().setLocation(firstBox);
+        moveBackward();
+        assertThat(getRoverLocationX()).isEqualTo(MAX_X_LOCATION);
+
+        // last box
+        this.rover.getXPoint().setLocation(MAX_X_LOCATION);
+        moveForward();
+        assertThat(getRoverLocationX()).isEqualTo(firstBox);
+    }
 }
