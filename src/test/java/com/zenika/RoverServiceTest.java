@@ -21,8 +21,7 @@ public class RoverServiceTest {
     private static final int X = MAX_X_LOCATION - 1; // not edge
     private static final int Y = MAX_Y_LOCATION - 2;
 
-    @Autowired
-    private Rover rover;
+    private Rover rover = new Rover();
 
     @Autowired
     private RoverBusiness roverBusiness;
@@ -32,6 +31,8 @@ public class RoverServiceTest {
         rover.setXPoint(new Point(X, MAX_X_LOCATION));
         rover.setYPoint(new Point(Y, MAX_Y_LOCATION));
         rover.setDirection(Direction.NORTH);
+
+        roverBusiness.initRover(rover);
     }
 
     @Test
