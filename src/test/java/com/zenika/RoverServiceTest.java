@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RoverServiceTest {
 
     private static final int MAX_X_LOCATION = 5;
-    private static final int MAX_Y_LOCATION = 5;
+    private static final int MAX_Y_LOCATION = 6;
     private static final int X = MAX_X_LOCATION - 1; // not edge
     private static final int Y = MAX_Y_LOCATION - 2;
 
@@ -131,20 +131,31 @@ public class RoverServiceTest {
         assertThat(getRoverLocationY()).isEqualTo(Y);
     }
 
+    /**
+     * The x edge should be connected to the other x edge
+     */
     @Test
     public void should_connect_horizontal_edges() throws RoverException {
-        // the x edge should be connected to the other x edge
         this.rover.setDirection(Direction.EAST);
-        int firstBox = 1;
 
-        // first box
-        this.rover.getXPoint().setLocation(firstBox);
+        this.rover.getXPoint().setLocation(Point.startLocation);
         moveForward();
         assertThat(getRoverLocationX()).isEqualTo(MAX_X_LOCATION);
 
-        // last box
-        this.rover.getXPoint().setLocation(MAX_X_LOCATION);
         moveBackward();
-        assertThat(getRoverLocationX()).isEqualTo(firstBox);
+        assertThat(getRoverLocationX()).isEqualTo(Point.startLocation);
+    }
+
+    /**
+     * Vertical edges should be connected in inverted coordinates
+     */
+    @Test
+    public void should_connect_vertical_edges() throws RoverException {
+        this.rover.getYPoint().setLocation(Point.startLocation);
+        moveBackward();
+        assertThat(getRoverLocationY()).isEqualTo(MAX_Y_LOCATION);
+
+        moveForward();
+        assertThat(getRoverLocationY()).isEqualTo(Point.startLocation);
     }
 }

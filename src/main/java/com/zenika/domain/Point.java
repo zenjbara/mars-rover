@@ -10,17 +10,18 @@ public class Point {
     private int location;
     private int maxLocation;
 
-    private final int firstLocation = 1;
+    // X and Y both have the same start point
+    public static final int startLocation = 1;
 
     public int incrementLocation() {
         // edges are connected
-        location = (location == maxLocation) ? firstLocation : location + firstLocation;
+        location = (location == maxLocation) ? startLocation : location + startLocation;
         return location;
     }
 
     public int decrementLocation() {
         // edges are connected
-        location = (location == firstLocation) ? maxLocation : location - firstLocation;
+        location = (location == startLocation) ? maxLocation : location - startLocation;
         return location;
     }
 
