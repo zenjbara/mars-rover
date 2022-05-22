@@ -6,7 +6,10 @@ import com.zenika.domain.Rover;
 
 public interface RoverBusiness {
 
-    public void initRover(Rover rover);
+    /**
+     * use the @param rover rather than the default
+     */
+    public void useRover(Rover rover);
 
     /**
      * Make the rover receive a single command
@@ -21,4 +24,9 @@ public interface RoverBusiness {
      * @param commands
      */
     public void receiveCommands(String commands);
+
+    /**
+     * @return rover location and direction
+     */
+    public String getRoverCoordinate();
 }

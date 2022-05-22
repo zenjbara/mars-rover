@@ -32,7 +32,7 @@ public class RoverServiceTest {
         rover.setYPoint(new Point(Y, MAX_Y_LOCATION));
         rover.setDirection(Direction.NORTH);
 
-        roverBusiness.initRover(rover);
+        roverBusiness.useRover(rover);
     }
 
     @Test

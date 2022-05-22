@@ -9,11 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Point {
 
-    private int location;
-    private int maxLocation;
-
     // X and Y both have the same start point
     public static final int startLocation = 1;
+
+    private int location;
+    private int maxLocation;
 
     public int incrementLocation() {
         // edges are connected

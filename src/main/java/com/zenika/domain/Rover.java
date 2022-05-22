@@ -3,14 +3,16 @@ package com.zenika.domain;
 import com.zenika.common.Direction;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 @Data
 @AllArgsConstructor
-@Component
 public class Rover {
 
     public Rover() {
+        // initiate rover with default values (Mars size doesnt change to much)
+        this.xPoint = new Point(Point.startLocation, 5);
+        this.yPoint = new Point(Point.startLocation, 5);
+        this.direction = Direction.NORTH;
     }
 
     private Point xPoint;
@@ -56,10 +58,18 @@ public class Rover {
     }
 
     public void turnRight() {
-            this.direction = this.direction.getRightDirection();
+        this.direction = this.direction.getRightDirection();
     }
 
     public void turnLeft() {
         this.direction = this.direction.getLeftDirection();
+    }
+
+    @Override
+    public String toString() {
+        return "(" + xPoint.getLocation() + "," + yPoint.getLocation() + ") --- " +
+                "xPoint=" + xPoint +
+                ", yPoint=" + yPoint +
+                ", direction=" + direction;
     }
 }

@@ -10,7 +10,11 @@ public class RoverBusinessImpl implements RoverBusiness {
 
     private Rover rover;
 
-    public void initRover(Rover rover) {
+    public RoverBusinessImpl() {
+        this.rover = new Rover();
+    }
+
+    public void useRover(Rover rover) {
         this.rover = rover;
     }
 
@@ -44,5 +48,10 @@ public class RoverBusinessImpl implements RoverBusiness {
                 continue;
             }
         }
+    }
+
+    @Override
+    public String getRoverCoordinate() {
+        return rover.toString();
     }
 }
