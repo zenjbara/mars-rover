@@ -3,12 +3,14 @@ package com.zenika.domain;
 import com.zenika.common.Direction;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
+@Slf4j
 public class Rover {
 
     public Rover() {
@@ -98,6 +100,9 @@ public class Rover {
                         obstacle.getY() == y
         );
 
+        if (hasObstacle) {
+            log.warn("Obstacle detected at (" + x + "," + y + ")");
+        }
         return hasObstacle;
     }
 
