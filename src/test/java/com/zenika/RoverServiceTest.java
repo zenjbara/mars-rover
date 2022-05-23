@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class RoverServiceTest {
         rover.setXPoint(new Point(X, MAX_X_LOCATION));
         rover.setYPoint(new Point(Y, MAX_Y_LOCATION));
         rover.setDirection(Direction.NORTH);
+        rover.setObstacles(new ArrayList<>());
 
         roverBusiness.useRover(rover);
     }
@@ -165,15 +167,17 @@ public class RoverServiceTest {
     }
 
     @Test
-    public void should_stop_when_obstacle_found() {
+    public void should_stop_when_obstacle_found() throws RoverException {
         List<Obstacle> obstacles = Arrays.asList(
-                new Obstacle(2, 1),
-                new Obstacle(1, 3)
+                new Obstacle(X, Y + 1),
+                new Obstacle(X, Y - 1)
         );
-
         rover.setObstacles(obstacles);
-        rover.moveForward();
 
+        moveForward();
+        assertThat(getRoverLocationY()).isEqualTo(Y);
+
+        moveBackward();
         assertThat(getRoverLocationY()).isEqualTo(Y);
     }
 }

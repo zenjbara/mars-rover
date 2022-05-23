@@ -15,16 +15,14 @@ public class Point {
     private int location;
     private int maxLocation;
 
-    public int incrementLocation() {
+    public int getLocationToIncrement() {
         // edges are connected
-        location = (location == maxLocation) ? startLocation : location + startLocation;
-        return location;
+        return (location == maxLocation) ? startLocation : location + 1;
     }
 
-    public int decrementLocation() {
+    public int getLocationToDecrement() {
         // edges are connected
-        location = (location == startLocation) ? maxLocation : location - startLocation;
-        return location;
+        return (location == startLocation) ? maxLocation : location - 1;
     }
 
 }
