@@ -3,9 +3,11 @@ package com.zenika.business.impl;
 import com.zenika.business.RoverBusiness;
 import com.zenika.common.RoverException;
 import com.zenika.domain.Rover;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class RoverBusinessImpl implements RoverBusiness {
 
     private Rover rover;
@@ -45,6 +47,7 @@ public class RoverBusinessImpl implements RoverBusiness {
                 this.receiveSingleCommand(cmd);
             } catch (RoverException e) {
                 // Rover ignore unknown commands
+                log.warn(e.getMessage());
                 continue;
             }
         }

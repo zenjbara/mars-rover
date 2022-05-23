@@ -3,6 +3,7 @@ package com.zenika;
 import com.zenika.business.RoverBusiness;
 import com.zenika.common.Direction;
 import com.zenika.common.RoverException;
+import com.zenika.domain.Obstacle;
 import com.zenika.domain.Point;
 import com.zenika.domain.Rover;
 import org.junit.jupiter.api.Assertions;
@@ -10,6 +11,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -158,5 +162,18 @@ public class RoverServiceTest {
 
         moveForward();
         assertThat(getRoverLocationY()).isEqualTo(Point.startLocation);
+    }
+
+    @Test
+    public void should_stop_when_obstacle_found() {
+        List<Obstacle> obstacles = Arrays.asList(
+                new Obstacle(2, 1),
+                new Obstacle(1, 3)
+        );
+
+        rover.setObstacles(obstacles);
+        rover.moveForward();
+
+        assertThat(getRoverLocationY()).isEqualTo(Y);
     }
 }

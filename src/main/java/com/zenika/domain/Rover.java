@@ -4,6 +4,8 @@ import com.zenika.common.Direction;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 public class Rover {
@@ -17,8 +19,8 @@ public class Rover {
 
     private Point xPoint;
     private Point yPoint;
-
     private Direction direction;
+    private List<Obstacle> obstacles;
 
     /**
      * Move the rover one step forward depends on its direction
