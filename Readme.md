@@ -25,7 +25,7 @@ This kata is developed with TDD approach, this is why the commits are named as f
 This is a Spring Boot project providing two services:
 
 * get rover location: `GET  localhost:8080/rover/coordinate/`
-* move the rover : `POST localhost:8080/compute/5`
+* move the rover : `POST localhost:8080/rover/coordinate/`
   with request body `{"commands": "..."}`
 
  ```bash
